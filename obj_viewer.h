@@ -3,19 +3,21 @@
 
 #define _GNU_SOURCE
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
-enum error_codes { OK, NO_SUCH_FILE_OR_DIRECTORY };
+enum error_codes { OK, NO_SUCH_FILE_OR_DIRECTORY, INCORRECT_FILE, RAM_ERROR };
 
 typedef struct geometry_tag {
   int v_count;
   int f_count;
-  double* vertex_x;
-  double* vertex_y;
-  double* vertex_z;
+  double* array_vertex_x;
+  double* array_vertex_y;
+  double* array_vertex_z;
 } geometry_info;
 
-
+int get_object_info(FILE* fp, geometry_info* pobject);
+// void struct_clean(geometry_info* pobject);
 
 
 
