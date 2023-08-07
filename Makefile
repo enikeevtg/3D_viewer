@@ -47,7 +47,7 @@ man:
 
 # SERVICE
 style:
-	clang-format --style=google -n e_matrix.h $(SRC) $(UNITS_SRC) $(TESTS_SRC)
+	clang-format --style=google -n $(SRC) $(UNITS_SRC) $(TESTS_SRC)
 
 gost:
-	clang-format --style=google -i e_matrix.h $(SRC) $(UNITS_SRC) $(TESTS_SRC)
+	clang-format --style=google -i $(SRC) $(UNITS_SRC) $(TESTS_SRC)
