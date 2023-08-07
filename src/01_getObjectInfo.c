@@ -15,11 +15,11 @@ int getObjectInfo(FILE* fp, geometry_info* pobject) {
   // char str[11] = {0};
   // printf("first line is: \"%s\"", fgets(str, 10, fp));
 
-  // for (int i = 0; i < 3; i++) {
-  //   double x = pobject->array_vertex_x[i];
-  //   double y = pobject->array_vertex_y[i];
-  //   double z = pobject->array_vertex_z[i];
-  //   printf("#%d:\n x = %lf\n y = %lf\n z = %lf\n", i, x, y, z);
-  // }
+  for (int i = 0; i < 3; i++) {
+    double x = pobject->array_vertex_x[i];
+    double y = pobject->array_vertex_y[i];
+    double z = pobject->array_vertex_z[i];
+    printf("#%d:\n x = %lf\n y = %lf\n z = %lf\n", i, x, y, z);
+  }
   return error;
 }
