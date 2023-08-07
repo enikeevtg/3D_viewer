@@ -18,8 +18,10 @@ typedef struct geometry_tag {
 
 int get_object_info(FILE* fp, geometry_info* pobject);
 void get_components_count(FILE* fp, geometry_info* pobject);
-int get_vertices(FILE* fp, geometry_info* pobject);
+int get_components(FILE* fp, geometry_info* pobject);
+int get_vertices(char* line, geometry_info* pobject, int index);
 int get_vertex_coordinate(char** line, double* coord, int index);
+
 void struct_clean(geometry_info* pobject);
 
 
