@@ -1,9 +1,9 @@
 #include "../obj_viewer.h"
 
-/// @brief 
-/// @param fp 
-/// @param pobject 
-void get_components_count(FILE* fp, geometry_info* pobject) {
+/// @brief
+/// @param fp
+/// @param pobject
+void getComponentsCount(FILE* fp, geometry_info* pobject) {
   char* line = NULL;
   size_t line_len = 0;
 

@@ -14,15 +14,16 @@ typedef struct geometry_tag {
   double* array_vertex_x;
   double* array_vertex_y;
   double* array_vertex_z;
+  int** array_faces;
 } geometry_info;
 
-int get_object_info(FILE* fp, geometry_info* pobject);
-void get_components_count(FILE* fp, geometry_info* pobject);
-int get_components(FILE* fp, geometry_info* pobject);
-int get_vertices(char* line, geometry_info* pobject, int index);
-int get_vertex_coordinate(char** line, double* coord, int index);
+int getObjectInfo(FILE* fp, geometry_info* pobject);
+void getComponentsCount(FILE* fp, geometry_info* pobject);
+int getComponents(FILE* fp, geometry_info* pobject);
+int getVertex(char* line, geometry_info* pobject, int v_index);
+int getFace(char* line, geometry_info* pobject, int f_index);
 
-void struct_clean(geometry_info* pobject);
+void structClean(geometry_info* pobject);
 
 
 
