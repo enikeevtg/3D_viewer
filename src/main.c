@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     error = NO_SUCH_FILE_OR_DIRECTORY;
   } else {
     error = get_object_info(fp, &object);
-    // struct_clean(&object);
+    struct_clean(&object);
     fclose(fp);
   }
   return error;
