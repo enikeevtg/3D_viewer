@@ -17,7 +17,7 @@ typedef struct Vertex {
 
 typedef struct Facet {
   int* vertices;
-  int vertices_number;
+  int facet_vertices_count;
 } facet_t;
 
 typedef struct Geometry {
@@ -30,8 +30,8 @@ typedef struct Geometry {
 int getGeometryInfo(FILE* fp, geometry_info* pobject);
 void getComponentsCount(FILE* fp, geometry_info* pobject);
 int getComponents(FILE* fp, geometry_info* pobject);
-int getVertex(char* line, geometry_info* pobject, int v_index);
-int getFace(char* line, geometry_info* pobject, int f_index);
+int getVertex(char* line, geometry_info* pobject, int i);
+int getFacet(char* line, geometry_info* pobject, int i);
 
 void structClean(geometry_info* pobject);
 

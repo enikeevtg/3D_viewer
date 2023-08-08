@@ -15,12 +15,6 @@ int getGeometryInfo(FILE* fp, geometry_info* pobject) {
   // printf("faces number is %d\n", pobject->facets_count);
   // char str[11] = {0};
   // printf("first line is: \"%s\"", fgets(str, 10, fp));
-
-  for (int i = 0; i < 3; i++) {
-    double x = pobject->vertices[i].x;
-    double y = pobject->vertices[i].y;
-    double z = pobject->vertices[i].z;
-    printf("#%d:\n x = %lf\n y = %lf\n z = %lf\n", i, x, y, z);
-  }
+  
   return error;
 }

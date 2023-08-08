@@ -4,13 +4,13 @@
 /// @param line
 /// @param pobject
 /// @return
-int getVertex(char* line, geometry_info* pobject, int v_index) {
+int getVertex(char* line, geometry_info* pobject, int i) {
   double x, y, z;
   if (sscanf(line, "v %lf %lf %lf", &x, &y, &z) != 3) return INCORRECT_FILE;
 
-  pobject->vertices[v_index].x = x;
-  pobject->vertices[v_index].y = y;
-  pobject->vertices[v_index].z = z;
+  pobject->vertices[i].x = x;
+  pobject->vertices[i].y = y;
+  pobject->vertices[i].z = z;
 
   return OK;
 }
