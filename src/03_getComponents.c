@@ -5,15 +5,13 @@
 /// @param pobject
 /// @return
 int getComponents(FILE* fp, geometry_info* pobject) {
-  pobject->array_vertex_x = (double*)calloc(pobject->v_count, sizeof(double));
-  pobject->array_vertex_y = (double*)calloc(pobject->v_count, sizeof(double));
-  pobject->array_vertex_z = (double*)calloc(pobject->v_count, sizeof(double));
+  pobject->vertices =
+      (vertex_t*)calloc(pobject->vertices_count, sizeof(vertex_t));
 
-  // pobject->array_faces = (int**)calloc(pobject->f_count, sizeof(int*));
+  // pobject->facets = (facet_t*)calloc(pobject->facets_count, sizeof(facet_t));
 
   int error = OK;
-  if (pobject->array_vertex_x == NULL || pobject->array_vertex_y == NULL ||
-      pobject->array_vertex_z == NULL) {
+  if (pobject->vertices == NULL /*|| pobject->facets == NULL*/) {
     error = RAM_ERROR;
   } else {
     char* line = NULL;

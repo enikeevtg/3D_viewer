@@ -8,16 +8,26 @@
 
 enum error_codes { OK, NO_SUCH_FILE_OR_DIRECTORY, INCORRECT_FILE, RAM_ERROR };
 
-typedef struct geometry_tag {
-  int v_count;
-  int f_count;
-  double* array_vertex_x;
-  double* array_vertex_y;
-  double* array_vertex_z;
-  int** array_faces;
+typedef struct Vertex {
+  double x;
+  double y;
+  double z;
+  // void printCoords();
+} vertex_t;
+
+typedef struct Facet {
+  int* vertices;
+  int vertices_number;
+} facet_t;
+
+typedef struct Geometry {
+  int vertices_count;
+  int facets_count;
+  vertex_t* vertices;
+  facet_t* facets;
 } geometry_info;
 
-int getObjectInfo(FILE* fp, geometry_info* pobject);
+int getGeometryInfo(FILE* fp, geometry_info* pobject);
 void getComponentsCount(FILE* fp, geometry_info* pobject);
 int getComponents(FILE* fp, geometry_info* pobject);
 int getVertex(char* line, geometry_info* pobject, int v_index);

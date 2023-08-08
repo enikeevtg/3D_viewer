@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
   if ((fp = fopen(argv[1], "r")) == NULL) {
     error = NO_SUCH_FILE_OR_DIRECTORY;
   } else {
-    error = getObjectInfo(fp, &object);
+    error = getGeometryInfo(fp, &object);
     structClean(&object);
     fclose(fp);
   }
