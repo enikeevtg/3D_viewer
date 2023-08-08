@@ -15,6 +15,6 @@ int getGeometryInfo(FILE* fp, geometry_info* pobject) {
   // printf("faces number is %d\n", pobject->facets_count);
   // char str[11] = {0};
   // printf("first line is: \"%s\"", fgets(str, 10, fp));
-  
+
   return error;
 }
