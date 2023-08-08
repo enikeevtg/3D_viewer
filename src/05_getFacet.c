@@ -44,10 +44,12 @@ int getFacetVerticesCount(char* line) {
 int getFacetVertex(char** line, geometry_info* pobject, int i,
                    int vertex_index) {
   int vertex_id = atoi(*line);
-  *line += strspn(*line, " ");
+  *line += strspn(*line, " -");
   *line += strspn(*line, "0123456789");
-  if (vertex_id < 0 || !(**line == ' ' || **line == '/')) return INCORRECT_FILE;
+  if (vertex_id == 0 || !(**line == ' ' || **line == '/'))
+    return INCORRECT_FILE;
 
+  if (vertex_id < 0) vertex_id += pobject->vertices_count + 1;
   pobject->facets[i].vertices[vertex_index] = vertex_id;
   *line = strpbrk(*line, " ");
 

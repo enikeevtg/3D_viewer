@@ -7,7 +7,7 @@ MK = mkdir -p
 MAKE = make
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
-#	LEAKS = CK_FORK=no leaks --atExit -- 
+	LEAKS = CK_FORK=no leaks --atExit -- 
 	REPORT_OPEN = open
 else ifeq ($(OS), Linux)
 	LEAKS =
@@ -43,7 +43,7 @@ TEST_EXE =
 
 man:
 	$(CC) $(CF) $(SRC)
-	$(LEAKS)./a.out 17257_Booster_rocket_for_space_shuttle_v1_NEW.obj
+	$(LEAKS)./a.out 17257_Booster_rocket_for_space_shuttle_v1_NEW.obj > geometry_info.txt
 
 # SERVICE
 style:
