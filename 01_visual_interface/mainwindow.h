@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
 
 extern "C" {
   #include "../02_model_loading/model_loading.h"
@@ -18,6 +19,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_actionOpen_Model_triggered();
 
 private:
     Ui::MainWindow *ui;

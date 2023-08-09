@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui openglwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,7 +14,8 @@ SOURCES += \
     ../02_model_loading/03_getComponents.c \
     ../02_model_loading/04_getVertex.c \
     ../02_model_loading/05_getFacet.c \
-    ../02_model_loading/06_structClean.c \
+    ../02_model_loading/06_getRange.c \
+    ../02_model_loading/07_structClean.c \
     main.cpp \
     mainwindow.cpp
 

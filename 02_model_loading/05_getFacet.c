@@ -40,8 +40,8 @@ int getFacetVertex(char** line, geometry_info* pobject, int ID, int i) {
   int vertex_ID = atoi(*line);
   if (vertex_ID == 0) return INCORRECT_FILE;
 
-  if (vertex_ID < 0) vertex_ID += pobject->vertices_count + 1;
-  pobject->facets[ID].vertex_IDs[i] = vertex_ID;
+  if (vertex_ID < 0) vertex_ID += pobject->vertices_count;
+  pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1;
 
   *line += strspn(*line, " -");
   *line += strspn(*line, "0123456789");

@@ -12,7 +12,7 @@ void getRange(geometry_info* pobject) {
   double z_min = vertices[1].z;
 
   int last_vertex_ID = pobject->vertices_count;
-  for (int i = 1; i <= last_vertex_ID; i++) {
+  for (int i = 0; i < last_vertex_ID; i++) {
     if (vertices[i].x > x_max) x_max = vertices[i].x;
     if (vertices[i].x < x_min) x_min = vertices[i].x;
     if (vertices[i].y > y_max) y_max = vertices[i].y;
