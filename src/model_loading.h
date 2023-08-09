@@ -3,7 +3,7 @@
 
 #include "../3D_viewer.h"
 
-int getGeometryInfo(FILE* fp, geometry_info* pobject);
+int getGeometryInfo(char* filename, geometry_info* pobject);
 void getComponentsCount(FILE* fp, geometry_info* pobject);
 int getComponents(FILE* fp, geometry_info* pobject);
 int getVertex(char* line, geometry_info* pobject, int ID);
