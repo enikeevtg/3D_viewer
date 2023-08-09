@@ -1,5 +1,5 @@
-#ifndef OBJ_VIEWER_3D_VIEWER_H_
-#define OBJ_VIEWER_3D_VIEWER_H_
+#ifndef _3D_VIEWER_3D_VIEWER_H_
+#define _3D_VIEWER_3D_VIEWER_H_
 
 #define _GNU_SOURCE
 #include <stdio.h>
@@ -15,7 +15,7 @@ typedef struct Vertex {
 } vertex_t;
 
 typedef struct Facet {
-  int* vertices_id;
+  int* vertex_IDs;
   int facet_vertices_count;
 } facet_t;
 
@@ -26,4 +26,4 @@ typedef struct Geometry {
   facet_t* facets;
 } geometry_info;
 
-#endif  // OBJ_VIEWER_3D_VIEWER_H_
+#endif  // _3D_VIEWER_3D_VIEWER_H_

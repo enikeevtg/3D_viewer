@@ -1,9 +1,9 @@
 #include "model_loading.h"
 
-/// @brief
-/// @param fp
-/// @param pobject
-/// @return
+/// @brief getting geometric object vertices and facets info from .obj file
+/// @param fp .obj file pointer
+/// @param pobject geometric object pointer
+/// @return error code
 int getComponents(FILE* fp, geometry_info* pobject) {
   pobject->vertices =
       (vertex_t*)calloc(pobject->vertices_count + 1, sizeof(vertex_t));
@@ -14,19 +14,17 @@ int getComponents(FILE* fp, geometry_info* pobject) {
   if (pobject->vertices == NULL || pobject->facets == NULL) {
     error = RAM_ERROR;
   } else {
-    ssize_t read_bytes = 0;
     char* line = NULL;
     size_t line_len = 0;
-    int vertex_index = 1;
-    int facet_index = 1;
-    while ((read_bytes = getline(&line, &line_len, fp)) != -1 && !error) {
-      line[read_bytes - 1] = '\0';
-      if (line[0] == 'v' && line[1] == ' ') {  // strncmp()
-        error = getVertex(line, pobject, vertex_index);
-        vertex_index++;
-      } else if (line[0] == 'f' && line[1] == ' ') {  // strncmp()
-        error = getFacet(line, pobject, facet_index);
-        facet_index++;
+    int vertex_id = 1;
+    int facet_id = 1;
+    while (getline(&line, &line_len, fp) != -1 && !error) {
+      if (strncmp(line, "v ", 2) == 0) {
+        error = getVertex(line, pobject, vertex_id);
+        vertex_id++;
+      } else if (strncmp(line, "f ", 2) == 0) {
+        error = getFacet(line, pobject, facet_id);
+        facet_id++;
       }
     }
     if (line) free(line);

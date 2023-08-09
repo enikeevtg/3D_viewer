@@ -1,28 +1,26 @@
 #include "model_loading.h"
 
 int getFacetVerticesCount(char* line);
-int getFacetVertex(char** line, geometry_info* pobject, int i,
-                   int vertex_index);
+int getFacetVertex(char** line, geometry_info* pobject, int ID, int i);
 
-/// @brief
-/// @param line
-/// @param pobject
-/// @param f_index
-/// @return
-int getFacet(char* line, geometry_info* pobject, int i) {
+/// @brief getting geometric object facet info from .obj file line
+/// @param line .obj file line
+/// @param pobject geometric object pointer
+/// @param ID facet global ID
+/// @return error code
+int getFacet(char* line, geometry_info* pobject, int ID) {
   line++;
   line += strspn(line, " ");
   int vertices_count = getFacetVerticesCount(line);
   if (vertices_count < 3) return INCORRECT_FILE;
 
-  pobject->facets[i].facet_vertices_count = vertices_count;
-  pobject->facets[i].vertices_id = (int*)calloc(vertices_count, sizeof(int));
-  if (pobject->facets[i].vertices_id == NULL) return RAM_ERROR;
+  pobject->facets[ID].facet_vertices_count = vertices_count;
+  pobject->facets[ID].vertex_IDs = (int*)calloc(vertices_count, sizeof(int));
+  if (pobject->facets[ID].vertex_IDs == NULL) return RAM_ERROR;
 
   int error = OK;
-  for (int vertex_index = 0; vertex_index < vertices_count && !error;
-       vertex_index++) {
-    error = getFacetVertex(&line, pobject, i, vertex_index);
+  for (int i = 0; i < vertices_count && !error; i++) {
+    error = getFacetVertex(&line, pobject, ID, i);
   }
 
   return error;
@@ -38,13 +36,12 @@ int getFacetVerticesCount(char* line) {
   return vertices_count;
 }
 
-int getFacetVertex(char** line, geometry_info* pobject, int i,
-                   int vertex_index) {
-  int vertex_id = atoi(*line);
-  if (vertex_id == 0) return INCORRECT_FILE;
+int getFacetVertex(char** line, geometry_info* pobject, int ID, int i) {
+  int vertex_ID = atoi(*line);
+  if (vertex_ID == 0) return INCORRECT_FILE;
 
-  if (vertex_id < 0) vertex_id += pobject->vertices_count + 1;
-  pobject->facets[i].vertices_id[vertex_index] = vertex_id;
+  if (vertex_ID < 0) vertex_ID += pobject->vertices_count + 1;
+  pobject->facets[ID].vertex_IDs[i] = vertex_ID;
 
   *line += strspn(*line, " -");
   *line += strspn(*line, "0123456789");

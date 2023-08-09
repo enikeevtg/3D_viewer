@@ -1,8 +1,8 @@
 #include "model_loading.h"
 
-/// @brief
-/// @param fp
-/// @param pobject
+/// @brief Counting vertices and facets number
+/// @param fp .obj file pointer
+/// @param pobject geometric object pointer
 void getComponentsCount(FILE* fp, geometry_info* pobject) {
   char* line = NULL;
   size_t line_len = 0;
