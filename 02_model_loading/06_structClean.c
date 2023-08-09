@@ -1,6 +1,6 @@
 #include "model_loading.h"
 
-/// @brief heap memory cleaning
+/// @brief heap memory freeing
 /// @param pobject geometric object pointer
 void structClean(geometry_info* pobject) {
   if (pobject->vertices != NULL) free(pobject->vertices);

@@ -4,7 +4,7 @@
 /// @param filename .obj file name
 /// @param pobject geometric object pointer
 /// @return error code
-int getGeometryInfo(char* filename, geometry_info* pobject) {
+int getGeometryInfo(const char* filename, geometry_info* pobject) {
   int error = OK;
   FILE* fp;
   if ((fp = fopen(filename, "r")) == NULL) {
@@ -15,6 +15,7 @@ int getGeometryInfo(char* filename, geometry_info* pobject) {
       return INCORRECT_FILE;
 
     error = getComponents(fp, pobject);
+    getRange(pobject);
     fclose(fp);
   }
   return error;

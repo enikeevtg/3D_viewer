@@ -28,22 +28,17 @@ GCOV_FLAGS = -fprofile-arcs -ftest-coverage
 # FILENAMES
 TARGET =
 
-SRC_DIR = ./src/
-SRC = $(wildcard $(SRC_DIR)*.c)
-OBJ_DIR = ./obj/
-OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
+MODEL_LOAD_DIR = ./02_model_loading/
+MODEL_LOAD_SRC = $(wildcard $(MODEL_LOAD_DIR)*.c)
 
-UNITS_DIR = ./units/
-UNITS_SRC = $(wildcard $(UNITS_DIR)*.c)
-
-TESTS_DIR = ./tests/
+TESTS_DIR = ./08_tests/
 TESTS_SRC = $(wildcard $(TESTS_DIR)*.c)
 TEST_EXE =
 
-MODELS_SRC = ./models/
+MODELS_SRC = ./00_models/
 
 man:
-	$(CC) $(CF) $(SRC)
+	$(CC) $(CF) main.c $(MODEL_LOAD_SRC)
 #	$(LEAKS)./a.out $(MODELS_SRC)Energy_rocket.obj > geometry_info.txt
 #	$(LEAKS)./a.out $(MODELS_SRC)Leon_kennedy.obj > geometry_info.txt
 	$(LEAKS)./a.out $(MODELS_SRC)teddy.obj > geometry_info.txt

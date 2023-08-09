@@ -24,6 +24,13 @@ typedef struct Geometry {
   int facets_count;
   vertex_t* vertices;
   facet_t* facets;
+  
+  double x_min;
+  double x_max;
+  double y_min;
+  double y_max;
+  double z_min;
+  double z_max;
 } geometry_info;
 
 #endif  // _3D_VIEWER_3D_VIEWER_H_

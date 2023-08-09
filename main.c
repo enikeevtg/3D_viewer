@@ -1,4 +1,4 @@
-#include "model_loading.h"
+#include "./02_model_loading/model_loading.h"
 
 int main(int argc, char** argv) {
   (void)argc;
@@ -21,7 +21,11 @@ int main(int argc, char** argv) {
       }
     }
   }
-  structClean(&object);
 
+  printf("\nx_max = %lf\nx_min = %lf\n\n", object.x_max, object.x_min);
+  printf("y_max = %lf\ny_min = %lf\n\n", object.y_max, object.y_min);
+  printf("z_max = %lf\nz_min = %lf\n", object.z_max, object.z_min);
+
+  structClean(&object);
   return error;
 }
