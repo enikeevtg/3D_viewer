@@ -1,4 +1,4 @@
-#include "../obj_viewer.h"
+#include "model_loading.h"
 
 int main(int argc, char** argv) {
   (void)argc;
@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
       for (int i = 1; i < object.facets_count + 1; i++) {
         printf("facet #%d:\n", i);
         for (int j = 0; j < object.facets[i].facet_vertices_count; j++) {
-          printf("\t vertex #%d: %d\n", j + 1, object.facets[i].vertices[j]);
+          printf("\t vertex #%d: %d\n", j + 1, object.facets[i].vertices_id[j]);
         }
       }
     }

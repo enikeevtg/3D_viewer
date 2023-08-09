@@ -7,7 +7,7 @@ MK = mkdir -p
 MAKE = make
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
-	LEAKS = CK_FORK=no leaks --atExit -- 
+#	LEAKS = CK_FORK=no leaks --atExit -- 
 	REPORT_OPEN = open
 else ifeq ($(OS), Linux)
 	LEAKS =
@@ -40,10 +40,13 @@ TESTS_DIR = ./tests/
 TESTS_SRC = $(wildcard $(TESTS_DIR)*.c)
 TEST_EXE =
 
+MODELS_SRC = ./models/
 
 man:
 	$(CC) $(CF) $(SRC)
-	$(LEAKS)./a.out 17257_Booster_rocket_for_space_shuttle_v1_NEW.obj > geometry_info.txt
+#	$(LEAKS)./a.out $(MODELS_SRC)Energy_rocket.obj > geometry_info.txt
+#	$(LEAKS)./a.out $(MODELS_SRC)Leon_kennedy.obj > geometry_info.txt
+	$(LEAKS)./a.out $(MODELS_SRC)teddy.obj > geometry_info.txt
 
 # SERVICE
 style:
@@ -51,3 +54,6 @@ style:
 
 gost:
 	clang-format --style=google -i $(SRC) $(UNITS_SRC) $(TESTS_SRC)
+
+clean:
+	@rm -rf *.out
