@@ -47,9 +47,9 @@ int getFacetVertex(char** line, geometry_info* pobject, int ID, int i,
   if (vertex_ID == 0) return INCORRECT_FILE;
 
   if (vertex_ID < 0) {
-    vertex_ID += vertex_id_end + 2;  // *facepalm*
+    vertex_ID += vertex_id_end + 2;  // hard ducktape if any groups
   } else {
-    vertex_ID += vertex_id_start;  // *facepalm*
+    vertex_ID += vertex_id_start;  // hard ducktape if any groups
   }
   pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1;
 

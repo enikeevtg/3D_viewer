@@ -22,14 +22,14 @@ int getComponents(FILE* fp, geometry_info* pobject) {
     while (getline(&line, &line_len, fp) != -1 && !error) {
       if (strncmp(line, "v ", 2) == 0) {
         error = getVertex(line, pobject, vertex_id);
+        vertex_id_end = vertex_id;  // hard ducktape if any groups
         vertex_id++;
-        vertex_id_end = vertex_id;  // hard duck tape if any groups
       } else if (strncmp(line, "f ", 2) == 0) {
         error =
             getFacet(line, pobject, facet_id, vertex_id_start, vertex_id_end);
         facet_id++;
       } else if (strncmp(line, "g ", 2) == 0 && vertex_id_start != 0) {
-        vertex_id_start = vertex_id + 1;  // hard duck tape if any groups
+        vertex_id_start = vertex_id + 1;  // hard ducktape if any groups
       }
     }
     if (line) free(line);
