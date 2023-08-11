@@ -2,9 +2,13 @@
 
 int main(int argc, char** argv) {
   (void)argc;
+  // (void)argv;
   int error = OK;
   geometry_info object = {0};
   error = getGeometryInfo(argv[1], &object);
+  // error =
+  // getGeometryInfo("/opt/goinfre/zeftyrst/work_zeftyrst/2023.08_C8_3DViewer_v1.0/3D_viewer_v1/00_models/teddy.obj",
+  // &object);
 
   if (!error) {
     for (int i = 0; i < object.vertices_count; i++) {

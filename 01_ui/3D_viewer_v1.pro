@@ -21,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     ../02_model_loading/model_loading.h \
+    ../3D_viewer.h \
     mainwindow.h
 
 FORMS += \

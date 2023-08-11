@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.0, 2023-08-09T21:19:45. -->
+<!-- Written by QtCreator 7.0.0, 2023-08-11T16:43:56. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -19,7 +19,7 @@
    <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.0">
     <value type="QString" key="language">Cpp</value>
     <valuemap type="QVariantMap" key="value">
-     <value type="QByteArray" key="CurrentPreferences">CppGlobal</value>
+     <value type="QByteArray" key="CurrentPreferences">gnu</value>
     </valuemap>
    </valuemap>
    <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.1">
@@ -238,12 +238,11 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
-     <value type="QString">DYLD_LIBRARY_PATH</value>
      <value type="QString">DYLD_FRAMEWORK_PATH</value>
+     <value type="QString">DYLD_LIBRARY_PATH</value>
     </valuelist>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">3D_viewer_v12</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/opt/goinfre/zeftyrst/work_zeftyrst/2023.08_C8_3DViewer_v1.0/3D_viewer_v1/01_visual_interface/3D_viewer_v1.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/opt/goinfre/zeftyrst/work_zeftyrst/2023.08_C8_3DViewer_v1.0/3D_viewer_v1/01_visual_interface/3D_viewer_v1.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/opt/goinfre/zeftyrst/work_zeftyrst/2023.08_C8_3DViewer_v1.0/3D_viewer_v1/01_ui/3D_viewer_v1.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/opt/goinfre/zeftyrst/work_zeftyrst/2023.08_C8_3DViewer_v1.0/3D_viewer_v1/01_ui/3D_viewer_v1.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

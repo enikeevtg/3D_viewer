@@ -28,6 +28,6 @@ int main(int argc, char** argv) {
     fclose(fp);
     if (str) free(str);
   }
+  printf("%d", atoi(" -1 1"));
   return 0;
 }
-

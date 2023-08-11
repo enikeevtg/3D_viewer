@@ -11,15 +11,16 @@ int getFacetVertex(char** line, geometry_info* pobject, int ID, int i);
 int getFacet(char* line, geometry_info* pobject, int ID) {
   line++;
   line += strspn(line, " ");
-  int vertices_count = getFacetVerticesCount(line);
-  if (vertices_count < 3) return INCORRECT_FILE;
+  int facet_vertices_count = getFacetVerticesCount(line);
+  if (facet_vertices_count < 1) return INCORRECT_FILE;
 
-  pobject->facets[ID].facet_vertices_count = vertices_count;
-  pobject->facets[ID].vertex_IDs = (int*)calloc(vertices_count, sizeof(int));
+  pobject->facets[ID].facet_vertices_count = facet_vertices_count;
+  pobject->facets[ID].vertex_IDs =
+      (int*)calloc(facet_vertices_count, sizeof(int));
   if (pobject->facets[ID].vertex_IDs == NULL) return RAM_ERROR;
 
   int error = OK;
-  for (int i = 0; i < vertices_count && !error; i++) {
+  for (int i = 0; i < facet_vertices_count && !error; i++) {
     error = getFacetVertex(&line, pobject, ID, i);
   }
 
@@ -27,20 +28,20 @@ int getFacet(char* line, geometry_info* pobject, int ID) {
 }
 
 int getFacetVerticesCount(char* line) {
-  int vertices_count = 0;
-  while (line && strchr("0123456789", *line)) {
-    vertices_count++;
+  int facet_vertices_count = 0;
+  while (line && strchr("-0123456789", *line)) {
+    facet_vertices_count++;
     line = strpbrk(line, " ");
     if (line) line += strspn(line, " ");
   }
-  return vertices_count;
+  return facet_vertices_count;
 }
 
 int getFacetVertex(char** line, geometry_info* pobject, int ID, int i) {
   int vertex_ID = atoi(*line);
   if (vertex_ID == 0) return INCORRECT_FILE;
 
-  if (vertex_ID < 0) vertex_ID += pobject->vertices_count;
+  if (vertex_ID < 0) vertex_ID += pobject->vertices_count + 1;
   pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1;
 
   *line += strspn(*line, " -");

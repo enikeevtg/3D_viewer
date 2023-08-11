@@ -7,8 +7,7 @@
 int getComponents(FILE* fp, geometry_info* pobject) {
   pobject->vertices =
       (vertex_t*)calloc(pobject->vertices_count, sizeof(vertex_t));
-  pobject->facets =
-      (facet_t*)calloc(pobject->facets_count, sizeof(facet_t));
+  pobject->facets = (facet_t*)calloc(pobject->facets_count, sizeof(facet_t));
 
   int error = OK;
   if (pobject->vertices == NULL || pobject->facets == NULL) {
