@@ -1,14 +1,16 @@
 #include "model_loading.h"
 
 int getFacetVerticesCount(char* line);
-int getFacetVertex(char** line, geometry_info* pobject, int ID, int i);
+int getFacetVertex(char** line, geometry_info* pobject, int ID, int i,
+                   int vertex_id_offset);
 
 /// @brief getting geometric object facet info from .obj file line
 /// @param line .obj file line
 /// @param pobject geometric object pointer
 /// @param ID facet global ID
+/// @param vertex_id_offset duck tape if .obj file has any groups
 /// @return error code
-int getFacet(char* line, geometry_info* pobject, int ID) {
+int getFacet(char* line, geometry_info* pobject, int ID, int vertex_id_offset) {
   line++;
   line += strspn(line, " ");
   int facet_vertices_count = getFacetVerticesCount(line);
@@ -21,7 +23,7 @@ int getFacet(char* line, geometry_info* pobject, int ID) {
 
   int error = OK;
   for (int i = 0; i < facet_vertices_count && !error; i++) {
-    error = getFacetVertex(&line, pobject, ID, i);
+    error = getFacetVertex(&line, pobject, ID, i, vertex_id_offset);
   }
 
   return error;
@@ -37,12 +39,13 @@ int getFacetVerticesCount(char* line) {
   return facet_vertices_count;
 }
 
-int getFacetVertex(char** line, geometry_info* pobject, int ID, int i) {
+int getFacetVertex(char** line, geometry_info* pobject, int ID, int i,
+                   int vertex_id_offset) {
   int vertex_ID = atoi(*line);
   if (vertex_ID == 0) return INCORRECT_FILE;
 
   if (vertex_ID < 0) vertex_ID += pobject->vertices_count + 1;
-  pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1;
+  pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1 + vertex_id_offset;
 
   *line += strspn(*line, " -");
   *line += strspn(*line, "0123456789");

@@ -17,13 +17,16 @@ int getComponents(FILE* fp, geometry_info* pobject) {
     size_t line_len = 0;
     int vertex_id = 0;
     int facet_id = 0;
+    int vertex_id_offset = 0;
     while (getline(&line, &line_len, fp) != -1 && !error) {
       if (strncmp(line, "v ", 2) == 0) {
         error = getVertex(line, pobject, vertex_id);
         vertex_id++;
       } else if (strncmp(line, "f ", 2) == 0) {
-        error = getFacet(line, pobject, facet_id);
+        error = getFacet(line, pobject, facet_id, vertex_id_offset);
         facet_id++;
+      } else if (strncmp(line, "g ", 2) == 0) {
+        vertex_id_offset = vertex_id;
       }
     }
     if (line) free(line);
