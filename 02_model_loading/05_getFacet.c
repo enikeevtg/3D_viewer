@@ -2,7 +2,7 @@
 
 int getFacetVerticesCount(char* line);
 int getFacetVertex(char** line, geometry_info* pobject, int ID, int i,
-                   int vertex_id_offset);
+                   int vertex_id_start, int vertex_id_end);
 
 /// @brief getting geometric object facet info from .obj file line
 /// @param line .obj file line
@@ -10,7 +10,8 @@ int getFacetVertex(char** line, geometry_info* pobject, int ID, int i,
 /// @param ID facet global ID
 /// @param vertex_id_offset duck tape if .obj file has any groups
 /// @return error code
-int getFacet(char* line, geometry_info* pobject, int ID, int vertex_id_offset) {
+int getFacet(char* line, geometry_info* pobject, int ID, int vertex_id_start,
+             int vertex_id_end) {
   line++;
   line += strspn(line, " ");
   int facet_vertices_count = getFacetVerticesCount(line);
@@ -23,7 +24,8 @@ int getFacet(char* line, geometry_info* pobject, int ID, int vertex_id_offset) {
 
   int error = OK;
   for (int i = 0; i < facet_vertices_count && !error; i++) {
-    error = getFacetVertex(&line, pobject, ID, i, vertex_id_offset);
+    error =
+        getFacetVertex(&line, pobject, ID, i, vertex_id_start, vertex_id_end);
   }
 
   return error;
@@ -40,12 +42,16 @@ int getFacetVerticesCount(char* line) {
 }
 
 int getFacetVertex(char** line, geometry_info* pobject, int ID, int i,
-                   int vertex_id_offset) {
+                   int vertex_id_start, int vertex_id_end) {
   int vertex_ID = atoi(*line);
   if (vertex_ID == 0) return INCORRECT_FILE;
 
-  if (vertex_ID < 0) vertex_ID += pobject->vertices_count + 1;
-  pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1 + vertex_id_offset;
+  if (vertex_ID < 0) {
+    vertex_ID += vertex_id_end + 2;  // *facepalm*
+  } else {
+    vertex_ID += vertex_id_start;  // *facepalm*
+  }
+  pobject->facets[ID].vertex_IDs[i] = vertex_ID - 1;
 
   *line += strspn(*line, " -");
   *line += strspn(*line, "0123456789");
