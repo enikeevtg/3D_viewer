@@ -53,16 +53,30 @@
          <height>663</height>
         </rect>
        </property>
-       <widget class="QTextEdit" name="textEdit">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>251</width>
-          <height>661</height>
-         </rect>
-        </property>
-       </widget>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTextEdit" name="file_info">
+          <property name="minimumSize">
+           <size>
+            <width>220</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

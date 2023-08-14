@@ -20,16 +20,17 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(QWidget *parent = nullptr);
+  MainWindow(QWidget* parent = nullptr);
   ~MainWindow();
 
  private slots:
   void on_actionOpen_Model_triggered();
+  void fileInfoFilling(geometry_info* pobject, QFileInfo file_info);
+  int edgesCounting(geometry_info* pobject);
 
  private:
-  Ui::MainWindow *ui;
-  QString filename = QDir::homePath();
+  Ui::MainWindow* ui;
+  QString file = QDir::homePath();
   geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  void fileAttributesFilling(QString file, QTextEdit *output);
 };
 #endif  // MAINWINDOW_H
