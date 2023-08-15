@@ -1,11 +1,6 @@
 #ifndef _3D_VIEWER_3D_VIEWER_H_
 #define _3D_VIEWER_3D_VIEWER_H_
 
-#define _GNU_SOURCE
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 enum error_codes { OK, NO_SUCH_FILE_OR_DIRECTORY, INCORRECT_FILE, RAM_ERROR };
 
 typedef struct Vertex {

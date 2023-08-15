@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMainWindow>
-#include <QTextEdit>
+//#include <QTextEdit>
 
 extern "C" {
 #include "../02_model_loading/model_loading.h"

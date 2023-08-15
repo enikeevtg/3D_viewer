@@ -1,6 +1,11 @@
 #ifndef _3D_VIEWER_SRC_MODEL_LOADING_H_
 #define _3D_VIEWER_SRC_MODEL_LOADING_H_
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "../3D_viewer.h"
 
 int getGeometryInfo(const char* filename, geometry_info* pobject);
