@@ -5,6 +5,7 @@ AR = ar rs
 RAN = ranlib
 MK = mkdir -p
 MAKE = make
+RM = rm -rf
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
 #	LEAKS = CK_FORK=no leaks --atExit -- 
@@ -26,7 +27,7 @@ endif
 GCOV_FLAGS = -fprofile-arcs -ftest-coverage
 
 # FILENAMES
-TARGET =
+APP = 3D_viewer_v1.app
 
 MODELS_DIR = ./00_models/
 
@@ -35,11 +36,27 @@ UI_DIR = ./01_ui/
 MODEL_LOAD_DIR = ./02_model_loading/
 MODEL_LOAD_SRC = $(wildcard $(MODEL_LOAD_DIR)*.c)
 
+BUILD_DIR = ./build/
+
 TESTS_DIR = ./08_tests/
 TESTS_SRC = $(wildcard $(TESTS_DIR)*.c)
 TEST_EXE =
 
+# BUILD
+all: clean install launch
 
+# APP
+install:
+	$(MK) $(BUILD_DIR)
+	cd $(BUILD_DIR) && qmake ../$(UI_DIR)3D_viewer_v1.pro && make -j6 && make clean && rm -rf .qmake.stash Makefile
+
+launch:
+	open $(BUILD_DIR)$(APP)
+
+uninstall:
+	$(RM) $(BUILD_DIR)*
+
+#TESTS
 man:
 	$(CC) $(CF) main.c $(MODEL_LOAD_SRC)
 #	$(LEAKS)./a.out $(MODELS_SRC)Energy_rocket.obj > geometry_info.txt

@@ -24,11 +24,17 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
 
  private slots:
-  void on_actionOpen_Model_triggered();
+  void on_actionOpenModel_triggered();
   void fileInfoFilling(geometry_info* pobject, QFileInfo file_info);
   int edgesCounting(geometry_info* pobject);
 
- private:
+  void on_checkBox_vertices_stateChanged(int arg1);
+  void on_checkBox__edges_stateChanged(int arg1);
+
+  void on_actionTabInfo_triggered();
+  void on_actionTabSettings_triggered();
+
+private:
   Ui::MainWindow* ui;
   QString file = QDir::homePath();
   geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

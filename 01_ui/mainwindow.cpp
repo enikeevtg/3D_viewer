@@ -12,7 +12,9 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow() { delete ui; }
 
-void MainWindow::on_actionOpen_Model_triggered() {
+////////////////////////////////////////////////////////////////////////////
+// FILE OPENING
+void MainWindow::on_actionOpenModel_triggered() {
   file = QFileDialog::getOpenFileName(this, "Open File", file, "*.obj");
   QFileInfo file_info(file);
   if (file_info.isFile() == true) {
@@ -47,4 +49,28 @@ int MainWindow::edgesCounting(geometry_info* pobject) {
     edges_count += pobject->facets->facet_vertices_count;
   }
   return edges_count;
+}
+
+////////////////////////////////////////////////////////////////////////////
+// VIEW SETTINGS
+void MainWindow::on_checkBox_vertices_stateChanged(int arg1)
+{
+    ui->openGLWidget->vertices_draw_mode = arg1;
+    ui->openGLWidget->update();
+}
+
+void MainWindow::on_checkBox__edges_stateChanged(int arg1)
+{
+    ui->openGLWidget->edges_draw_mode = arg1;
+    ui->openGLWidget->update();
+}
+
+////////////////////////////////////////////////////////////////////////////
+// TABS
+void MainWindow::on_actionTabSettings_triggered() {
+    ui->tabsWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionTabInfo_triggered() {
+    ui->tabsWidget->setCurrentIndex(2);
 }

@@ -14,6 +14,9 @@ class EOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions {
   ~EOpenGLWidget();
   geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+  bool vertices_draw_mode = 1;
+  bool edges_draw_mode = 1;
+
   private:
   void initializeGL() override;
   void resizeGL(int w, int h) override;

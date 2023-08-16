@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/Folder_open_alt_font_awesome.svg.png</file>
+        <file>icons/2040504.png</file>
+        <file>icons/info-icon-png-transparent-20.jpeg</file>
+        <file>icons/3d-modeling-icon.webp</file>
+        <file>icons/1454773.png</file>
+        <file>icons/2018699.png</file>
+        <file>icons/move_rotate.png</file>
+    </qresource>
+</RCC>
