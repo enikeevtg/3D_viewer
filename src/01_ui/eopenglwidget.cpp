@@ -1,9 +1,9 @@
 #include "eopenglwidget.h"
 
 #ifdef Q_OS_MAC
-    #include <glu.h>
+#include <glu.h>
 #elif linux
-    #include <GL/glu.h>
+#include <GL/glu.h>
 #endif
 
 EOpenGLWidget::EOpenGLWidget(QWidget* parent) : QOpenGLWidget(parent) {}
@@ -40,8 +40,8 @@ void EOpenGLWidget::paintGL() {
   }
   if (edges_draw_mode == true) {
     for (int i = 0; i < object.facets_count; i++) {
-        glDrawElements(GL_LINE_LOOP, object.facets[i].facet_vertices_count, GL_UNSIGNED_INT, object.facets[i].vertex_IDs);
+      glDrawElements(GL_LINE_LOOP, object.facets[i].facet_vertices_count,
+                     GL_UNSIGNED_INT, object.facets[i].vertex_IDs);
     }
   }
 }
-

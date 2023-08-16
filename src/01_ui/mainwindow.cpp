@@ -53,24 +53,36 @@ int MainWindow::edgesCounting(geometry_info* pobject) {
 
 ////////////////////////////////////////////////////////////////////////////
 // VIEW SETTINGS
-void MainWindow::on_checkBox_vertices_stateChanged(int arg1)
-{
-    ui->openGLWidget->vertices_draw_mode = arg1;
-    ui->openGLWidget->update();
+void MainWindow::on_checkBox_vertices_stateChanged(int arg1) {
+  ui->openGLWidget->vertices_draw_mode = arg1;
+  ui->openGLWidget->update();
 }
 
-void MainWindow::on_checkBox__edges_stateChanged(int arg1)
-{
-    ui->openGLWidget->edges_draw_mode = arg1;
-    ui->openGLWidget->update();
+void MainWindow::on_checkBox__edges_stateChanged(int arg1) {
+  ui->openGLWidget->edges_draw_mode = arg1;
+  ui->openGLWidget->update();
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // TABS
+void MainWindow::on_actionMove_Rotate_triggered() {
+  ui->tabsWidget->setCurrentIndex(0);
+}
+
 void MainWindow::on_actionTabSettings_triggered() {
-    ui->tabsWidget->setCurrentIndex(1);
+  ui->tabsWidget->setCurrentIndex(1);
 }
 
 void MainWindow::on_actionTabInfo_triggered() {
-    ui->tabsWidget->setCurrentIndex(2);
+  ui->tabsWidget->setCurrentIndex(2);
+}
+
+////////////////////////////////////////////////////////////////////////////
+// AFFINE TRANSFORMATIONS
+void MainWindow::on_doubleSpinBox_Tx_valueChanged(double arg1) {
+  for (int i = 0; i < object.vertices_count; i++) {
+    ui->openGLWidget->object.vertices[i].x += arg1 - last_tx;
+  }
+  last_tx = arg1;
+  ui->openGLWidget->update();
 }

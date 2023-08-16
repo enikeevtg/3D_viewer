@@ -70,10 +70,10 @@ man:
 
 # SERVICE
 style:
-	clang-format --style=google -n $(SRC_DIR)*.h $(SRC_DIR)*.c $(MODEL_LOAD_DIR)*.h $(MODEL_LOAD_DIR)*.c $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)
+	clang-format --style=google -n $(SRC_DIR)*.h $(MODEL_LOAD_DIR)* $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)
 
 gost:
-	clang-format --style=google -i *.h *.c $(MODEL_LOAD_DIR)*.h $(MODEL_LOAD_DIR)*.c $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)
+	clang-format --style=google -i $(SRC_DIR)*.h $(MODEL_LOAD_DIR)* $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)
 
 clean:
 	@rm -rf *.out

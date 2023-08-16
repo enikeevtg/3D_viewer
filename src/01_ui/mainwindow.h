@@ -34,9 +34,15 @@ class MainWindow : public QMainWindow {
   void on_actionTabInfo_triggered();
   void on_actionTabSettings_triggered();
 
-private:
+  void on_doubleSpinBox_Tx_valueChanged(double arg1);
+
+  void on_actionMove_Rotate_triggered();
+
+ private:
   Ui::MainWindow* ui;
   QString file = QDir::homePath();
   geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+  double last_tx = 0;
 };
 #endif  // MAINWINDOW_H
