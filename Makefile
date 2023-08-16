@@ -8,7 +8,7 @@ MAKE = make
 RM = rm -rf
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
-#	LEAKS = CK_FORK=no leaks --atExit -- 
+	LEAKS = CK_FORK=no leaks --atExit -- 
 	REPORT_OPEN = open
 else ifeq ($(OS), Linux)
 	LEAKS =
@@ -29,18 +29,20 @@ GCOV_FLAGS = -fprofile-arcs -ftest-coverage
 # FILENAMES
 APP = 3D_viewer_v1.app
 
-MODELS_DIR = ./00_models/
+SRC_DIR = ./src/
 
-UI_DIR = ./01_ui/
+MODELS_DIR = ./models/
 
-MODEL_LOAD_DIR = ./02_model_loading/
+UI_DIR = $(SRC_DIR)01_ui/
+
+MODEL_LOAD_DIR = $(SRC_DIR)02_model_loading/
 MODEL_LOAD_SRC = $(wildcard $(MODEL_LOAD_DIR)*.c)
 
-BUILD_DIR = ./build/
-
-TESTS_DIR = ./08_tests/
+TESTS_DIR = $(SRC_DIR)08_tests/
 TESTS_SRC = $(wildcard $(TESTS_DIR)*.c)
 TEST_EXE =
+
+BUILD_DIR = ./build/
 
 # BUILD
 all: clean install launch
@@ -56,6 +58,9 @@ launch:
 uninstall:
 	$(RM) $(BUILD_DIR)*
 
+app_leaks:
+	$(LEAKS) $(BUILD_DIR)$(APP)/Contents/MacOS/3D_viewer_v1
+
 #TESTS
 man:
 	$(CC) $(CF) main.c $(MODEL_LOAD_SRC)
@@ -65,7 +70,7 @@ man:
 
 # SERVICE
 style:
-	clang-format --style=google -n *.h *.c $(MODEL_LOAD_DIR)*.h $(MODEL_LOAD_DIR)*.c $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)
+	clang-format --style=google -n $(SRC_DIR)*.h $(SRC_DIR)*.c $(MODEL_LOAD_DIR)*.h $(MODEL_LOAD_DIR)*.c $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)
 
 gost:
 	clang-format --style=google -i *.h *.c $(MODEL_LOAD_DIR)*.h $(MODEL_LOAD_DIR)*.c $(UI_DIR)*.h $(UI_DIR)*.cpp $(TESTS_SRC)

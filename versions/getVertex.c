@@ -1,4 +1,4 @@
-#include "../obj_viewer.h"
+#include "../src/02_model_loading/model_loading.h"
 
 int getVertexCoordinate(char** line, double* coord, int v_index);
 

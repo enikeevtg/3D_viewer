@@ -1,4 +1,4 @@
-#include "./02_model_loading/model_loading.h"
+#include "../src/02_model_loading/model_loading.h"
 
 int main(int argc, char** argv) {
   (void)argc;
