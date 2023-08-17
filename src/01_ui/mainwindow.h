@@ -16,6 +16,15 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+enum view_settings {
+  INVISIBLE = 0,
+  VISIBLE = 2,
+  DASHED_EDGES,
+  SOLID_EDGES,
+  CIRCLE_VERTICES,
+  SQUARE_VERTICES
+};
+
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
@@ -28,8 +37,8 @@ class MainWindow : public QMainWindow {
   void fileInfoFilling(geometry_info* pobject, QFileInfo file_info);
   int edgesCounting(geometry_info* pobject);
 
-  void on_checkBox_vertices_stateChanged(int arg1);
-  void on_checkBox_edges_stateChanged(int arg1);
+  void on_checkBox_vertices_visibility_stateChanged(int arg1);
+  void on_checkBox_edges_visibility_stateChanged(int arg1);
 
   void showTab();
 
@@ -43,8 +52,6 @@ class MainWindow : public QMainWindow {
   QString file = QDir::homePath();
   geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-  QColor vertices_color;
-  QColor edges_color;
   double last_tx = 0;
 };
 #endif  // MAINWINDOW_H
