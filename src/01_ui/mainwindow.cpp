@@ -10,13 +10,23 @@ MainWindow::MainWindow(QWidget* parent)
   ui->toolBar->setMovable(false);
   ui->tabsWidget->setHidden(true);
 
-//  for (auto button : ui->buttonGroup_tabs_buttons->buttons()) {
-//      connect(button, SIGNAL(clicked()), this, SLOT(showTab()));
-//    }
-  connect(ui->pushButton_transformations, SIGNAL(clicked()), this, SLOT(showTab()));
+  vertices_color = Qt::white;
+  edges_color = Qt::white;
+
+  //  for (auto button : ui->buttonGroup_tabs_buttons->buttons()) {
+  //      connect(button, SIGNAL(clicked()), this, SLOT(showTab()));
+  //    }
+  connect(ui->pushButton_transformations, SIGNAL(clicked()), this,
+          SLOT(showTab()));
   connect(ui->pushButton_capture, SIGNAL(clicked()), this, SLOT(showTab()));
-  connect(ui->pushButton_view_settings, SIGNAL(clicked()), this, SLOT(showTab()));
+  connect(ui->pushButton_view_settings, SIGNAL(clicked()), this,
+          SLOT(showTab()));
   connect(ui->pushButton_info, SIGNAL(clicked()), this, SLOT(showTab()));
+
+  connect(ui->pushButton_vertices_color, SIGNAL(clicked()), this,
+          SLOT(getColor()));
+  connect(ui->pushButton_edges_color, SIGNAL(clicked()), this,
+          SLOT(getColor()));
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -47,7 +57,8 @@ void MainWindow::fileInfoFilling(geometry_info* pobject, QFileInfo file_info) {
   QString e_count = QString::number(edgesCounting(pobject));
 
   ui->file_info->setText(
-      "filename: " + filename + "\nfilepath: " + filepath + "/\n\nfilesize: " + filesize + " kb\n\nvertices count: " + v_count +
+      "filename: " + filename + "\nfilepath: " + filepath +
+      "/\n\nfilesize: " + filesize + " kb\n\nvertices count: " + v_count +
       "\nedges count: " + e_count + "\nfacets count: " + f_count);
 }
 
@@ -100,8 +111,27 @@ void MainWindow::on_checkBox_vertices_stateChanged(int arg1) {
   ui->openGLWidget->update();
 }
 
-void MainWindow::on_checkBox__edges_stateChanged(int arg1) {
+void MainWindow::on_checkBox_edges_stateChanged(int arg1) {
+  ui->radioButton_dashed_edges->setEnabled(arg1);
+  ui->radioButton_solid_edges->setEnabled(arg1);
+
   ui->openGLWidget->edges_draw_mode = arg1;
+  ui->openGLWidget->update();
+}
+
+void MainWindow::getColor() {
+  QPushButton* button = (QPushButton*)sender();
+
+  QColor* color = nullptr;
+  if (button->objectName() == "pushButton_edges_color") {
+    color = &edges_color;
+  } else {
+    color = &vertices_color;
+  }
+
+  *color = QColorDialog::getColor(*color, this, "Choose Color");
+  QString color_name = color->name(QColor::HexArgb);
+  button->setStyleSheet("background-color: " + color_name);
   ui->openGLWidget->update();
 }
 
@@ -115,3 +145,7 @@ void MainWindow::on_doubleSpinBox_Tx_valueChanged(double arg1) {
   ui->openGLWidget->update();
 }
 
+void MainWindow::on_radioButton_solid_edges_clicked() {
+  ui->openGLWidget->edges_draw_mode = 1;
+  //  ui->openGLWidget->update();
+}

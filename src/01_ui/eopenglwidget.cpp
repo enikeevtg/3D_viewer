@@ -6,7 +6,12 @@
 #include <GL/glu.h>
 #endif
 
-EOpenGLWidget::EOpenGLWidget(QWidget* parent) : QOpenGLWidget(parent) {}
+EOpenGLWidget::EOpenGLWidget(QWidget* parent) : QOpenGLWidget(parent) {
+  object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+  vertices_draw_mode = true;
+  edges_draw_mode = 1;
+}
 
 EOpenGLWidget::~EOpenGLWidget() { structClean(&object); }
 

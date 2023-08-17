@@ -12,10 +12,10 @@ class EOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions {
  public:
   EOpenGLWidget(QWidget* parent = nullptr);
   ~EOpenGLWidget();
-  geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  geometry_info object;
 
-  bool vertices_draw_mode = 1;
-  bool edges_draw_mode = 1;
+  bool vertices_draw_mode;
+  int edges_draw_mode;
 
  private:
   void initializeGL() override;
