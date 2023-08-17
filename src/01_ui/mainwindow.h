@@ -4,7 +4,6 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMainWindow>
-//#include <QTextEdit>
 
 extern "C" {
 #include "../02_model_loading/model_loading.h"
@@ -31,14 +30,12 @@ class MainWindow : public QMainWindow {
   void on_checkBox_vertices_stateChanged(int arg1);
   void on_checkBox__edges_stateChanged(int arg1);
 
-  void on_actionTabInfo_triggered();
-  void on_actionTabSettings_triggered();
+  void showTab();
 
   void on_doubleSpinBox_Tx_valueChanged(double arg1);
 
-  void on_actionMove_Rotate_triggered();
 
- private:
+private:
   Ui::MainWindow* ui;
   QString file = QDir::homePath();
   geometry_info object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

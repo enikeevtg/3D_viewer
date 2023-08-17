@@ -8,6 +8,15 @@ MainWindow::MainWindow(QWidget* parent)
   ui->setupUi(this);
 
   ui->toolBar->setMovable(false);
+  ui->tabsWidget->setHidden(true);
+
+//  for (auto button : ui->buttonGroup_tabs_buttons->buttons()) {
+//      connect(button, SIGNAL(clicked()), this, SLOT(showTab()));
+//    }
+  connect(ui->pushButton_transformations, SIGNAL(clicked()), this, SLOT(showTab()));
+  connect(ui->pushButton_capture, SIGNAL(clicked()), this, SLOT(showTab()));
+  connect(ui->pushButton_view_settings, SIGNAL(clicked()), this, SLOT(showTab()));
+  connect(ui->pushButton_info, SIGNAL(clicked()), this, SLOT(showTab()));
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -38,9 +47,8 @@ void MainWindow::fileInfoFilling(geometry_info* pobject, QFileInfo file_info) {
   QString e_count = QString::number(edgesCounting(pobject));
 
   ui->file_info->setText(
-      "filename: " + filename + "\n" + "filepath: " + filepath + "/\n\n" +
-      "filesize: " + filesize + " kb\n\n" + "vertices count: " + v_count +
-      "\n" + "edges count: " + e_count + "\n" + "facets count: " + f_count);
+      "filename: " + filename + "\nfilepath: " + filepath + "/\n\nfilesize: " + filesize + " kb\n\nvertices count: " + v_count +
+      "\nedges count: " + e_count + "\nfacets count: " + f_count);
 }
 
 int MainWindow::edgesCounting(geometry_info* pobject) {
@@ -49,6 +57,40 @@ int MainWindow::edgesCounting(geometry_info* pobject) {
     edges_count += pobject->facets->facet_vertices_count;
   }
   return edges_count;
+}
+
+////////////////////////////////////////////////////////////////////////////
+// TABS SHOWING PUSHBUTTONS
+void MainWindow::showTab() {
+  QPushButton* button = (QPushButton*)sender();
+
+  bool checked = button->isChecked();
+  ui->pushButton_transformations->setChecked(false);
+  ui->pushButton_capture->setChecked(false);
+  ui->pushButton_view_settings->setChecked(false);
+  ui->pushButton_info->setChecked(false);
+  button->setChecked(checked);
+
+  QString current_tab_msg = "";
+  if (checked == true) {
+    int tab_id = 0;
+    current_tab_msg = "Model transformations";
+    if (button->objectName() == "pushButton_capture") {
+      tab_id = 1;
+      current_tab_msg = "Model capture";
+    } else if (button->objectName() == "pushButton_view_settings") {
+      tab_id = 2;
+      current_tab_msg = "Viewport settings";
+    } else if (button->objectName() == "pushButton_info") {
+      tab_id = 3;
+      current_tab_msg = "Model info";
+    }
+    ui->tabsWidget->setHidden(false);
+    ui->tabsWidget->setCurrentIndex(tab_id);
+  } else {
+    ui->tabsWidget->setHidden(true);
+  }
+  ui->statusbar->showMessage(current_tab_msg);
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -64,20 +106,6 @@ void MainWindow::on_checkBox__edges_stateChanged(int arg1) {
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// TABS
-void MainWindow::on_actionMove_Rotate_triggered() {
-  ui->tabsWidget->setCurrentIndex(0);
-}
-
-void MainWindow::on_actionTabSettings_triggered() {
-  ui->tabsWidget->setCurrentIndex(1);
-}
-
-void MainWindow::on_actionTabInfo_triggered() {
-  ui->tabsWidget->setCurrentIndex(2);
-}
-
-////////////////////////////////////////////////////////////////////////////
 // AFFINE TRANSFORMATIONS
 void MainWindow::on_doubleSpinBox_Tx_valueChanged(double arg1) {
   for (int i = 0; i < object.vertices_count; i++) {
@@ -86,3 +114,4 @@ void MainWindow::on_doubleSpinBox_Tx_valueChanged(double arg1) {
   last_tx = arg1;
   ui->openGLWidget->update();
 }
+

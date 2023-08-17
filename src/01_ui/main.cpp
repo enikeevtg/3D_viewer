@@ -7,5 +7,5 @@ int main(int argc, char *argv[]) {
   setlocale(LC_NUMERIC, "C");
   MainWindow _3DViewer;
   _3DViewer.show();
-  ` return app.exec();
+  return app.exec();
 }
