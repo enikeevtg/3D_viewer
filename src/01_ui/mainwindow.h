@@ -18,7 +18,7 @@ QT_END_NAMESPACE
 
 enum view_settings {
   INVISIBLE = 0,
-  VISIBLE = 2,
+  VISIBLE,
   DASHED_EDGES,
   SOLID_EDGES,
   CIRCLE_VERTICES,
@@ -37,14 +37,15 @@ class MainWindow : public QMainWindow {
   void fileInfoFilling(geometry_info* pobject, QFileInfo file_info);
   int edgesCounting(geometry_info* pobject);
 
-  void on_checkBox_vertices_visibility_stateChanged(int arg1);
-  void on_checkBox_edges_visibility_stateChanged(int arg1);
-
   void showTab();
+
+  void visabilitySetting(int check);
+  void typeSelect();
+  void sizeSetting(int size);
+  void getColor();
 
   void on_doubleSpinBox_Tx_valueChanged(double arg1);
 
-  void getColor();
   void on_radioButton_solid_edges_clicked();
 
  private:

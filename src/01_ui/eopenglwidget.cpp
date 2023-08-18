@@ -67,7 +67,7 @@ void EOpenGLWidget::paintGL() {
 
 void EOpenGLWidget::setVerticesDisplay() {
   if (vertices_type == SQUARE_VERTICES) {
-    glEnable(GL_POINT_SMOOTH);
+    glDisable(GL_POINT_SMOOTH);
   } else if (vertices_type == CIRCLE_VERTICES) {
     glEnable(GL_POINT_SMOOTH);
   }
@@ -79,10 +79,12 @@ void EOpenGLWidget::setVerticesDisplay() {
 }
 
 void EOpenGLWidget::setEdgesDisplay() {
+  glEnable(GL_LINE_STIPPLE);
   if (edges_type == DASHED_EDGES) {
     glEnable(GL_LINE_STIPPLE);
+    glLineStipple(5, 0x00FF);
   } else if (edges_type == SOLID_EDGES) {
-    glEnable(GL_LINE_STIPPLE);
+    glDisable(GL_LINE_STIPPLE);
   }
 
   glLineWidth(edges_thickness);

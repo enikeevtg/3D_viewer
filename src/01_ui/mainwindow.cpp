@@ -20,6 +20,25 @@ MainWindow::MainWindow(QWidget* parent)
           SLOT(showTab()));
   connect(ui->pushButton_info, SIGNAL(clicked()), this, SLOT(showTab()));
 
+  connect(ui->checkBox_vertices_visibility, SIGNAL(stateChanged(int)), this,
+          SLOT(visabilitySetting(int)));
+  connect(ui->checkBox_edges_visibility, SIGNAL(stateChanged(int)), this,
+          SLOT(visabilitySetting(int)));
+
+  connect(ui->radioButton_solid_edges, SIGNAL(clicked()), this,
+          SLOT(typeSelect()));
+  connect(ui->radioButton_dashed_edges, SIGNAL(clicked()), this,
+          SLOT(typeSelect()));
+  connect(ui->radioButton_circle_vertices, SIGNAL(clicked()), this,
+          SLOT(typeSelect()));
+  connect(ui->radioButton_square_vertices, SIGNAL(clicked()), this,
+          SLOT(typeSelect()));
+
+  connect(ui->spinBox_vertices_size, SIGNAL(valueChanged(int)), this,
+          SLOT(sizeSetting(int)));
+  connect(ui->spinBox_edges_thickness, SIGNAL(valueChanged(int)), this,
+          SLOT(sizeSetting(int)));
+
   connect(ui->pushButton_vertices_color, SIGNAL(clicked()), this,
           SLOT(getColor()));
   connect(ui->pushButton_edges_color, SIGNAL(clicked()), this,
@@ -104,24 +123,45 @@ void MainWindow::showTab() {
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// VIEW SETTINGS
-void MainWindow::on_checkBox_vertices_visibility_stateChanged(int arg1) {
-  ui->radioButton_square_vertices->setEnabled(arg1);
-  ui->radioButton_circle_vertices->setEnabled(arg1);
-  ui->spinBox_vertex_size->setEnabled(arg1);
-  ui->pushButton_vertices_color->setEnabled(arg1);
+// VIEW SETTINGS TAB
+void MainWindow::visabilitySetting(int check) {
+  if (check) check = VISIBLE;
+  QCheckBox* check_box = (QCheckBox*)sender();
 
-  ui->openGLWidget->vertices_visibility = arg1;  // 0 or 2
+  if (check_box->text() == "Vertices") {
+    ui->openGLWidget->vertices_visibility = check;
+  } else if (check_box->text() == "Edges") {
+    ui->openGLWidget->edges_visibility = check;
+  }
+
   ui->openGLWidget->update();
 }
 
-void MainWindow::on_checkBox_edges_visibility_stateChanged(int arg1) {
-  ui->radioButton_dashed_edges->setEnabled(arg1);
-  ui->radioButton_solid_edges->setEnabled(arg1);
-  ui->spinBox_edges_thickness->setEnabled(arg1);
-  ui->pushButton_edges_color->setEnabled(arg1);
+void MainWindow::typeSelect() {
+  QRadioButton* radio_button = (QRadioButton*)sender();
 
-  ui->openGLWidget->edges_visibility = arg1;  // 0 or 2
+  if (radio_button->text() == "circle vertices") {
+    ui->openGLWidget->vertices_type = CIRCLE_VERTICES;
+  } else if (radio_button->text() == "square vertices") {
+    ui->openGLWidget->vertices_type = SQUARE_VERTICES;
+  } else if (radio_button->text() == "solid edges") {
+    ui->openGLWidget->edges_type = SOLID_EDGES;
+  } else if (radio_button->text() == "dashed edges") {
+    ui->openGLWidget->edges_type = DASHED_EDGES;
+  }
+
+  ui->openGLWidget->update();
+}
+
+void MainWindow::sizeSetting(int size) {
+  QSpinBox* spin_box = (QSpinBox*)sender();
+
+  if (spin_box->objectName() == "spinBox_vertices_size") {
+    ui->openGLWidget->vertices_size = size;
+  } else if (spin_box->objectName() == "spinBox_edges_thickness") {
+    ui->openGLWidget->edges_thickness = size;
+  }
+
   ui->openGLWidget->update();
 }
 
@@ -147,7 +187,7 @@ void MainWindow::getColor() {
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// AFFINE TRANSFORMATIONS
+// TRANSFORMATIONS TAB
 void MainWindow::on_doubleSpinBox_Tx_valueChanged(double arg1) {
   for (int i = 0; i < object.vertices_count; i++) {
     ui->openGLWidget->object.vertices[i].x += arg1 - last_tx;
@@ -157,6 +197,6 @@ void MainWindow::on_doubleSpinBox_Tx_valueChanged(double arg1) {
 }
 
 void MainWindow::on_radioButton_solid_edges_clicked() {
-  ui->openGLWidget->edges_type = 1;
-  //  ui->openGLWidget->update();
+  ui->openGLWidget->edges_type = SOLID_EDGES;
+  ui->openGLWidget->update();
 }

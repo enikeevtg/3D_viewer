@@ -199,6 +199,12 @@ QPushButton:checked {
            <height>70</height>
           </size>
          </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>5</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 border: 0px;
@@ -224,6 +230,9 @@ QPushButton:checked {
          </property>
          <property name="checkable">
           <bool>true</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -937,7 +946,7 @@ QPushButton:checked {
             <number>10</number>
            </property>
            <item row="3" column="1">
-            <widget class="QSpinBox" name="spinBox_vertex_size">
+            <widget class="QSpinBox" name="spinBox_vertices_size">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -996,36 +1005,6 @@ QPushButton:checked {
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
-            <widget class="QPushButton" name="pushButton_vertices_color">
-             <property name="minimumSize">
-              <size>
-               <width>80</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>80</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial Rounded MT Bold</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border: 2px solid white;
-}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="0" colspan="2">
             <widget class="QRadioButton" name="radioButton_square_vertices">
              <property name="font">
@@ -1036,19 +1015,6 @@ QPushButton:checked {
              </property>
              <property name="text">
               <string>square vertices</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_vertices_color">
-             <property name="font">
-              <font>
-               <family>Arial Rounded MT Bold</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>vertices color:</string>
              </property>
             </widget>
            </item>
@@ -1152,55 +1118,6 @@ QPushButton:checked {
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QPushButton" name="pushButton_edges_color">
-             <property name="minimumSize">
-              <size>
-               <width>80</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>80</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="sizeIncrement">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial Rounded MT Bold</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border: 2px solid white;
-}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_edges_color">
-             <property name="font">
-              <font>
-               <family>Arial Rounded MT Bold</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>edges color:</string>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="1">
             <widget class="QSpinBox" name="spinBox_edges_thickness">
              <property name="minimumSize">
@@ -1262,66 +1179,169 @@ QPushButton:checked {
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <property name="spacing">
-           <number>37</number>
+         <widget class="QGroupBox" name="groupBox_color_settings">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>150</height>
+           </size>
           </property>
-          <property name="leftMargin">
-           <number>12</number>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
           </property>
-          <property name="topMargin">
-           <number>12</number>
+          <property name="font">
+           <font>
+            <family>Arial Rounded MT Bold</family>
+            <pointsize>14</pointsize>
+           </font>
           </property>
-          <property name="rightMargin">
-           <number>12</number>
+          <property name="title">
+           <string>Color settings</string>
           </property>
-          <property name="bottomMargin">
-           <number>12</number>
-          </property>
-          <item>
-           <widget class="QLabel" name="label_background_color">
-            <property name="font">
-             <font>
-              <family>Arial Rounded MT Bold</family>
-              <pointsize>14</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>background color:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_background_color">
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>80</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton {
+          <layout class="QGridLayout" name="gridLayout_5">
+           <property name="verticalSpacing">
+            <number>10</number>
+           </property>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_edges_color">
+             <property name="font">
+              <font>
+               <family>Arial Rounded MT Bold</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>edges color</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="pushButton_edges_color">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="sizeIncrement">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Rounded MT Bold</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
 	border: 2px solid white;
 }</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="pushButton_background_color">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	border: 2px solid white;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_background_color">
+             <property name="font">
+              <font>
+               <family>Arial Rounded MT Bold</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>background color</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_vertices_color">
+             <property name="font">
+              <font>
+               <family>Arial Rounded MT Bold</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>vertices color</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButton_vertices_color">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Rounded MT Bold</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	border: 2px solid white;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer">
