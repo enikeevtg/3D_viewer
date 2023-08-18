@@ -9,6 +9,10 @@
 EOpenGLWidget::EOpenGLWidget(QWidget* parent) : QOpenGLWidget(parent) {
   object = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+  aspect_ratio = 1;
+
+  projection_type = PARALLEL_PROJECTION;
+
   vertices_visibility = VISIBLE;
   vertices_type = CIRCLE_VERTICES;
   vertices_size = 1;
@@ -31,25 +35,13 @@ void EOpenGLWidget::initializeGL() {
 
 void EOpenGLWidget::resizeGL(int width, int height) {
   glViewport(0, 0, width, height);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  qreal aspectratio = qreal(width) / qreal(height);
-  gluPerspective(90.0, aspectratio, 0.1, 100.0);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
+  w_width = width;
+  w_height = height;
+  aspect_ratio = qreal(width) / qreal(height);
 }
 
 void EOpenGLWidget::paintGL() {
-  glClearColor(background_color.redF(), background_color.greenF(),
-               background_color.blueF(), background_color.alphaF());
-
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glLoadIdentity();
-  glTranslatef(0, 0, -20);
-  glRotatef(0, 0.f, 1.f, 0.f);
-
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_DOUBLE, GL_TRUE, 0, object.vertices);
+  setDisplay();
 
   if (vertices_visibility == VISIBLE) {
     setVerticesDisplay();
@@ -63,6 +55,28 @@ void EOpenGLWidget::paintGL() {
                      GL_UNSIGNED_INT, object.facets[i].vertex_IDs);
     }
   }
+}
+
+void EOpenGLWidget::setDisplay() {
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  if (projection_type == PARALLEL_PROJECTION) {
+    glOrtho(-aspect_ratio, aspect_ratio, -1, 1, 1, -1);
+  } else if (projection_type == CENTRAL_PROJECTION) {
+//      gluPerspective(90.0, aspect_ratio, 1, -1);
+    glFrustum(-aspect_ratio, aspect_ratio, -1, 1, 1, -1);
+  }
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  glClearColor(background_color.redF(), background_color.greenF(),
+               background_color.blueF(), background_color.alphaF());
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glLoadIdentity();
+
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 3, GL_DOUBLE, GL_TRUE, 0, object.vertices);
 }
 
 void EOpenGLWidget::setVerticesDisplay() {

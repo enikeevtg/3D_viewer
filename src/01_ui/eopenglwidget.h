@@ -14,6 +14,8 @@ class EOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions {
   ~EOpenGLWidget();
   geometry_info object;
 
+  int projection_type;
+
   int vertices_visibility;
   int vertices_type;
   int vertices_size;
@@ -27,10 +29,15 @@ class EOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions {
   QColor background_color;
 
  private:
+  qreal aspect_ratio;
+  GLdouble w_width;
+  GLdouble w_height;
+
   void initializeGL() override;
   void resizeGL(int w, int h) override;
   void paintGL() override;
 
+  void setDisplay();
   void setVerticesDisplay();
   void setEdgesDisplay();
 };

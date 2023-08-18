@@ -1,5 +1,5 @@
-#ifndef _3D_VIEWER_SRC_MODEL_LOADING_H_
-#define _3D_VIEWER_SRC_MODEL_LOADING_H_
+#ifndef _3D_VIEWER_SRC_02_MODEL_LOADING_MODEL_LOADING_H_
+#define _3D_VIEWER_SRC_02_MODEL_LOADING_MODEL_LOADING_H_
 
 #define _GNU_SOURCE
 #include <stdio.h>
@@ -18,4 +18,4 @@ void getRange(geometry_info* pobject);
 
 void structClean(geometry_info* pobject);
 
-#endif  // _3D_VIEWER_SRC_MODEL_LOADING_H_
+#endif  // _3D_VIEWER_SRC_02_MODEL_LOADING_MODEL_LOADING_H_
