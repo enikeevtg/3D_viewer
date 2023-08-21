@@ -8,7 +8,7 @@ MAKE = make
 RM = rm -rf
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
-	LEAKS = CK_FORK=no leaks --atExit -- 
+	LEAKS = CK_FORK=no leaks -atExit -- 
 	REPORT_OPEN = open
 else ifeq ($(OS), Linux)
 	LEAKS =
@@ -63,7 +63,7 @@ app_leaks:
 
 #TESTS
 man:
-	$(CC) $(CF) main.c $(MODEL_LOAD_SRC)
+	$(CC) $(CF) ./versions/main.c $(MODEL_LOAD_SRC)
 #	$(LEAKS)./a.out $(MODELS_SRC)Energy_rocket.obj > geometry_info.txt
 #	$(LEAKS)./a.out $(MODELS_SRC)Leon_kennedy.obj > geometry_info.txt
 	$(LEAKS)./a.out $(MODELS_DIR)teddy.obj > geometry_info.txt

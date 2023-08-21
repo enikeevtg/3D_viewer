@@ -70,6 +70,8 @@ void EOpenGLWidget::setDisplay() {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
+  gluLookAt(0.0, 0.0, 1.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
+
   glClearColor(background_color.redF(), background_color.greenF(),
                background_color.blueF(), background_color.alphaF());
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -19167,3 +19167,27 @@ y_min = -17.074300
 
 z_max = 14.050600
 z_min = -14.050600
+Process:         a.out [11487]
+Path:            /opt/goinfre/*/a.out
+Load Address:    0x10a339000
+Identifier:      a.out
+Version:         ???
+Code Type:       X86-64
+Platform:        macOS
+Parent Process:  leaks [11486]
+
+Date/Time:       2023-08-21 14:02:23.369 +0300
+Launch Time:     2023-08-21 14:02:22.917 +0300
+OS Version:      macOS 11.6.6 (20G624)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 13.2.1 (13C100)
+
+Physical footprint:         532K
+Physical footprint (peak):  532K
+----
+
+leaks Report Version: 4.0
+Process 11487: 176 nodes malloced for 13 KB
+Process 11487: 0 leaks for 0 total leaked bytes.
+
