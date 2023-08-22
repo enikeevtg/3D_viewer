@@ -60,25 +60,21 @@ void EOpenGLWidget::paintGL() {
 void EOpenGLWidget::setDisplay() {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-
   if (projection_type == PARALLEL_PROJECTION) {
-    glOrtho(-aspect_ratio, aspect_ratio, -1, 1, 1, -1);
+    glOrtho(-aspect_ratio, aspect_ratio, -1, 1, 3, 1000);
   } else if (projection_type == CENTRAL_PROJECTION) {
-//      gluPerspective(90.0, aspect_ratio, 1, -1);
-    glFrustum(-aspect_ratio, aspect_ratio, -1, 1, 1, -1);
+    glFrustum(-aspect_ratio, aspect_ratio, -1, 1, 3, 1000);
   }
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-
-  gluLookAt(0.0, 0.0, 1.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
 
   glClearColor(background_color.redF(), background_color.greenF(),
                background_color.blueF(), background_color.alphaF());
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glLoadIdentity();
 
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(0.0, 0.0, 4.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_DOUBLE, GL_TRUE, 0, object.vertices);
+  glVertexAttribPointer(0, 3, GL_DOUBLE, GL_FALSE, 0, object.vertices);
 }
 
 void EOpenGLWidget::setVerticesDisplay() {
